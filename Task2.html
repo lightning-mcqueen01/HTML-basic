@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Abhishek" />
+    <style>
+      .likn {
+        width: 300px;
+        height: 200px;
+      }
+      .img-box {
+        width: 400px;
+        height: 400px;
+      }
+
+      .img-box img{
+        width: 100%;
+        height: 100%;
+      }
+
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+
+      th, td {
+        text-align: center;
+        padding: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>HTML Links, Image, List and Table</h1>
+    </header>
+    <br />
+
+    <div>
+      <h2>HTML Links</h2>
+
+      <p>
+        <b>A hyperlink is link to a other webpage, files and locations </b>
+        <br /><br />
+        A simple link with title <a href="https://www.google.com">Google</a>
+        <br />
+
+        A link within an image and targeted to a new window (_blank)
+        <a href="https://www.google.com" target="_blank" title="google">
+          <img
+            src="https://searchengineland.com/wp-content/seloads/2015/12/google-amp-fast-speed-travel-ss-1920-800x450.jpg"
+            alt="google photo"
+            width="80"
+            height="50"
+          /> 
+        </a><br />
+
+      </p>
+    </div>
+    <div>
+      <h2>HTML Images</h2>
+      <p>
+        A image can be embeded from the server or local files <br>
+        <div class="img-box">
+          <a href="https://www.google.com">
+          <img src="https://www.pixelstalk.net/wp-content/uploads/images6/Aesthetically-Pleasing-Wallpaper-Blue-Sky.jpg"
+                      alt="sky" border="5" title="sky" />
+              </a>
+
+        </div>
+
+      </p>
+      <p></p>
+    </div>
+    <div>
+      <h2>HTML Lists</h2>
+      <p>
+        <ol type="i">    <!--can also be reversed by reverse attribute-->
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>Javascript</li>
+        </ol>
+      </p>
+    </div>
+
+    <div>
+      <h2>HTML Tables</h2>
+      <p align-item="center"></p>
+      <table style="width:100%">
+        <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Score</th>
+        </tr>
+        <tr>
+            <td>Rohit</td>
+            <td>Sharma</td>
+            <td rowspan="2">28</td>
+        </tr>
+        <tr>
+            <td>Virat</td>
+            <td>Kohli</td>
+        </tr>
+        <tr>
+            <td>Shreyas</td>
+            <td>Iyar</td>
+            <td>45</td>
+        </tr>
+    </table>
+
+    </div>
+  </body>
+</html>
