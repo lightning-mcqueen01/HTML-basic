@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HTML Form and Semantics</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+
+    <style>
+      .container {
+        width: 70%;
+        margin: 0 auto;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        border: 2px solid black;
+      }
+
+      nav button {
+        margin: 8px 0;
+        padding: 12px 28px;
+        background-color: rgb(44, 44, 197);
+        color: #ffffff;
+      }
+
+      .form-sec {
+        background-color: rgb(250, 103, 54);
+        padding: 32px 28px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <nav>
+          <h1>FORM AND SEMANTICS</h1>
+          <button type="button"><a href="#">btn</a></button>
+          <button type="button"><a href="#">btn</a></button>
+        </nav>
+      </header>
+      <br />
+
+      <main>
+        <section class="link-sec">
+          <h2>Links</h2>
+          <p>Form Link <a href="#form-sec"> Form </a></p>
+          <br />
+        </section>
+        <section class="form-sec">
+          <h2>form</h2>
+
+          <form
+            id="form-sec"
+            action="#"
+            method="post"
+            target="_blank"
+            autocomplete="on"
+            accept-charset="UTF-8"
+          >
+            <fieldset>
+              <legend>Register Form</legend>
+
+              <label for="fname">First Name : </label><br />
+              <input type="text" id="fname" required name="fname" /><br /><br />
+
+              <label for="lname">Last Name : </label><br />
+              <input type="text" name="lname" id="lname" required /><br /><br />
+
+              <label for="mob">Mobile No. : </label><br />
+              <input
+                type="tel"
+                id="mob"
+                name="mob"
+                required
+                placeholder="36535..."
+              /><br /><br />
+
+              <label for="mail">Email : </label><br />
+              <input type="email" name="email" id="mail" /><br /><br />
+
+              <label>Enter your gender:</label>
+              <div class="gender-group">
+                <input
+                  type="radio"
+                  name="gender"
+                  value="male"
+                  id="male"
+                  required
+                />
+                <label for="male">Male</label>
+                <input type="radio" name="gender" value="female" id="female" />
+                <label for="female">Female</label>
+                <input type="radio" name="gender" value="others" id="others" />
+                <label for="others">Others</label>
+              </div>
+              <br />
+
+              <label for="course">Course : </label>
+              <select id="course" name="course">
+                <option value="BCA">BCA</option>
+                <option value="MCA">MCA</option>
+                <option value="">MCA</option></select
+              ><br /><br />
+
+              <label for="branch">Branch : </label>
+              <input type="checkbox" id="branch1" name="branch" value="web" />
+              <label for="branch1">WEB</label>
+              <input
+                type="checkbox"
+                id="branch2"
+                name="branch"
+                value="data science"
+              />
+              <label for="branch2">WEB</label>
+              <input type="checkbox" id="branch3" name="branch" value="" />
+              <label for="branch3">WEB</label>
+
+              <label for="dob">Date of Birth : </label><br />
+              <input type="date" id="dob" name="dob" required /><br /><br />
+
+              <textarea
+                id="w3review"
+                name="w3review"
+                rows="4"
+                cols="50"
+                placeholder="Enter suggestion"
+              >
+              </textarea
+              ><br /><br />
+
+              <button class="submit" type="submit" name="submit" value="Submit">
+                Submit
+              </button>
+            </fieldset>
+          </form>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
