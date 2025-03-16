@@ -1,0 +1,13 @@
+@media (max-width: 1132px) {
+  .chart-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 800px) {
+  .chart-box {
+    grid-template-columns: 1fr;
+  }
+}

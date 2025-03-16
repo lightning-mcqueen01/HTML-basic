@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Admin Dashboard</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="query.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section class="sidebar">
+      <div>
+        <ul class="side-list">
+          <li class="side-item">
+            <a href="#"
+              ><ion-icon name="browsers-outline"></ion-icon>
+              <span class="nav-item">Dashboard</span>
+            </a>
+          </li>
+          <li class="side-item">
+            <a href="#"
+              ><ion-icon name="person-circle-outline"></ion-icon>
+              <span class="nav-item">Profile</span>
+            </a>
+          </li>
+          <li class="side-item">
+            <a href="#"
+              ><ion-icon name="pie-chart-outline"></ion-icon>
+              <span class="nav-item">Statistics</span>
+            </a>
+          </li>
+          <li class="side-item">
+            <a href="#"
+              ><ion-icon name="albums-outline"></ion-icon>
+              <span class="nav-item">Careers</span>
+            </a>
+          </li>
+
+          <li class="side-item">
+            <a href="#"
+              ><ion-icon name="help-circle-outline"></ion-icon>
+              <span class="nav-item">FAQ</span>
+            </a>
+          </li>
+          <li class="side-item">
+            <a href="#"
+              ><ion-icon name="help-circle-outline"></ion-icon>
+              <span class="nav-item">Setting</span>
+            </a>
+          </li>
+          <li class="side-item">
+            <a href="#" class="logout"
+              ><ion-icon name="log-out-outline"></ion-icon>
+              <span class="nav-item">Log out</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <main>
+      <div class="header">
+        <div class="title"><h2>Dashboard</h2></div>
+        <div class="nav">
+          <div class="head-nav">
+            <div class="search">
+              <span><ion-icon name="search-outline"></ion-icon></span>
+              <div><input type="text" placeholder="Search" /></div>
+            </div>
+            <div class="profile">
+              <img src="Unknown_person.jpg" alt="" />
+            </div>
+            <div class="noti">
+              <ion-icon name="notifications-outline"></ion-icon>
+            </div>
+            <div class="theme">
+              <label for="theme" class="theme-label"
+                ><ion-icon name="sunny-outline"></ion-icon
+              ></label>
+              <input type="checkbox" id="theme" onclick="changeTheme()" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section class="widgets">
+        <h3>Today's data</h3>
+        <div class="chart-box">
+          <div class="chart chart-sales">
+            <div class="chart-info">
+              <div>
+                <p>Today's Sale</p>
+                <span>2400</span>
+              </div>
+              <ion-icon name="analytics-outline"></ion-icon>
+            </div>
+            <div class="chart-dis">
+              <p>Sales 5% Increase</p>
+            </div>
+          </div>
+          <div class="chart chart-benefit">
+            <div class="chart-info">
+              <div>
+                <p>Today's Benefit</p>
+                <span>300$</span>
+              </div>
+              <ion-icon name="arrow-up-outline"></ion-icon>
+            </div>
+            <div class="chart-dis">
+              <p>Sales Benefit 300$</p>
+            </div>
+          </div>
+
+          <div class="chart chart-loss">
+            <div class="chart-info">
+              <div>
+                <p>Today's Loss</p>
+                <span>0$</span>
+              </div>
+              <ion-icon name="arrow-down-outline"></ion-icon>
+            </div>
+            <div class="chart-dis">
+              <p>Sales 0% Loss</p>
+            </div>
+          </div>
+          <div class="chart chart-sales">
+            <div class="chart-info">
+              <div>
+                <p>Today's Sale</p>
+                <span>2400</span>
+              </div>
+              <ion-icon name="analytics-outline"></ion-icon>
+            </div>
+            <div class="chart-dis">
+              <p>Sales 5% Increase</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="table">
+        <table style="width: 100%">
+          <tr>
+            <th>Date</th>
+            <th>Transection Type</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+          <tr>
+            <td>Suresh Raj</td>
+            <td>Expence</td>
+            <td>3000</td>
+            <td>Pending</td>
+            <td><a href="#">Edit</a></td>
+          </tr>
+          <tr>
+            <td>Hemlata</td>
+            <td>Income</td>
+            <td>5000</td>
+            <td>Pending</td>
+            <td><a href="#">Edit</a></td>
+          </tr>
+          <tr>
+            <td>Renu Sharma</td>
+            <td>Expence</td>
+            <td>1000</td>
+            <td>Complete</td>
+            <td><a href="#">Edit</a></td>
+          </tr>
+          <tr>
+            <td>Karan Singh</td>
+            <td>Expence</td>
+            <td>10000</td>
+            <td>Complete</td>
+            <td><a href="#">Edit</a></td>
+          </tr>
+        </table>
+      </section>
+    </main>
+
+    <script>
+      function changeTheme() {
+        let checkbox = document.getElementById("theme");
+        let theme = document.body;
+        let table = document.querySelector(".table");
+        let chart = document.querySelector(".chart");
+
+        let themeLabel = document.querySelector(".theme-label");
+        // let light = document.createElement();
+
+        if (checkbox.checked) {
+          themeLabel.innerHTML = `<ion-icon name="moon-outline"></ion-icon>`;
+          theme.style.backgroundColor = "#000";
+          theme.style.color = "#fff";
+          table.style.backgroundColor = "#000";
+          chart.style.backgroundColor = "#000";
+        } else {
+          themeLabel.innerHTML = `<ion-icon name="sunny-outline"></ion-icon>`;
+          theme.style.backgroundColor = "#fff";
+          theme.style.color = "#000";
+          table.style.backgroundColor = "#d0d0d0";
+          chart.style.backgroundColor = "#fff";
+        }
+      }
+    </script>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
