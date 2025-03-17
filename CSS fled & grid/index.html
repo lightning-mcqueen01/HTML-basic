@@ -3,101 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Advanced CSS</title>
-    <style>
-      :root {
-        --primary-color: #007bff;
-        --secondary-color: #ff5733;
-        --text-color: #fff;
-      }
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #111;
-        color: var(--text-color);
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        overflow: hidden;
-      }
-      .container {
-        text-align: center;
-      }
-      h1 {
-        font-size: 2.5rem;
-        text-transform: uppercase;
-        background: linear-gradient(
-          45deg,
-          var(--primary-color),
-          var(--secondary-color)
-        );
-        -webkit-text-fill-color: transparent;
-        animation: fadeIn 2s ease-in-out;
-      }
-      .button {
-        background: var(--primary-color);
-        color: var(--text-color);
-        padding: 12px 24px;
-        border: none;
-        font-size: 18px;
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
-        transition: background 0.3s, transform 0.2s;
-      }
-      .button::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.3);
-        transition: left 0.3s;
-      }
-      .button:hover::before {
-        left: 100%;
-      }
-      .button:hover {
-        background: var(--secondary-color);
-        transform: scale(1.05);
-      }
-      .box {
-        width: 150px;
-        height: 150px;
-        background: var(--secondary-color);
-        border-radius: 10px;
-        box-shadow: 0 0 20px rgba(255, 87, 51, 0.8);
-        transition: transform 0.5s ease-in-out;
-        animation: rotateBox 3s infinite alternate;
-      }
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(-20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      @keyframes rotateBox {
-        from {
-          transform: rotate(0);
-        }
-        to {
-          transform: rotate(360deg);
-        }
-      }
-    </style>
+    <title>Flexbox & Grid Demo</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container">
-      <h1>Advanced CSS</h1>
-      <button class="button">Hover Me</button>
-      <div class="box"></div>
+    <nav class="navbar">
+      <div class="logo">Flex & Grid</div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="grid-container">
+      <div class="grid-item item1">Item 1</div>
+      <div class="grid-item item2">Item 2</div>
+      <div class="grid-item item3">Item 3</div>
+      <div class="grid-item item4">Item 4</div>
+      <div class="grid-item item5">Item 5</div>
+      <div class="grid-item item6">Item 6</div>
     </div>
   </body>
 </html>
