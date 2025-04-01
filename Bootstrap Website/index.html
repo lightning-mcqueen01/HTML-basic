@@ -94,15 +94,15 @@
         <!-- Modal -->
         <div
           class="modal fade"
-          id="loginModal"
+          id="reslutModal"
           tabindex="-1"
-          aria-labelledby="loginModalLabel"
+          aria-labelledby="resultModalLabel"
           aria-hidden="true"
         >
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                <h5 class="modal-title" id="resultModalLabel">Login</h5>
                 <button
                   type="button"
                   class="btn-close"
@@ -111,38 +111,15 @@
                 ></button>
               </div>
               <div class="modal-body">
-                <form>
-                  <div class="mb-3">
-                    <label for="name" class="form-label text-start">Name</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="name"
-                      placeholder="Enter your name"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label for="number" class="form-label">Phone Number</label>
-                    <input
-                      type="tel"
-                      class="form-control"
-                      id="number"
-                      placeholder="Enter your phone number"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="email"
-                      placeholder="Enter your email"
-                    />
-                  </div>
-                  <button type="submit" class="btn btn-dark text-white w-100">
-                    Login
-                  </button>
-                </form>
+                <h2 class="text-center">Quiz Completed!</h2>
+                <p class="text-center">Your Score :</p>
+                <span
+                  id="score"
+                  class="fs-3 px-3 py-2 bg-info my-4 text-center"
+                ></span>
+                <button class="btn px-3 py-2" onclick="restartQuiz()">
+                  Restart
+                </button>
               </div>
             </div>
           </div>
