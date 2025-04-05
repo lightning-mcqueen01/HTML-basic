@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>jquery Effects</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" contect="width=device-width" , initial-scale="1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-DQvkBjpPgn7RC31MCQoOeC9TI2kdqa4+BSgNMNj8v77fdC77Kj5zpWFTJaaAoMbC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YUe2LzesAfftltw+PEaao2tjU/QATaW/rOitAq67e0CT0Zi2VVRL0oC4+gAaeBKu"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .changer {
+        background-color: darkkhaki;
+      }
+
+      .box {
+        background-color: blueviolet;
+        width: 500px;
+        height: 500px;
+      }
+
+      .inner-div {
+        background-color: yellow;
+        width: 500px;
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="main d-flex gap-4 flex-wrap">
+        <p id="para" class="">hello world, its abhishek</p>
+      </div>
+      <button type="button" id="copyBtn" class="btn">copy content</button>
+      <button type="button" id="colorBtn" class="btn">Change color</button>
+      <div class="second-div m-5">
+        <div class="inner-div"></div>
+      </div>
+      <button id="addDiv" class="p-4">Insert Box</button>
+    </div>
+  </body>
+  <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"
+  ></script>
+  <script src="script.js"></script>
+</html>
