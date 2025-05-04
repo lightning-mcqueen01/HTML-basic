@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <style>
+      a {
+        text-decoration: none;
+      }
+      /* .main {
+        position: relative;
+      } */
+      aside {
+        /* position: absolute;
+        left: 0;
+        top: 0; */
+        background-color: rgb(222, 237, 249);
+      }
+      label {
+        font-size: 14px;
+      }
+      .side-list {
+        list-style: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main style="background-color: #dbe2e9">
+      <header
+        class="p-2 px-5 d-flex justify-content-between align-items-center"
+      >
+        <a href="#"><h1 class="fs-4">Task Manager</h1></a>
+        <div class="account d-flex align-items-center gap-3">
+          <button
+            type="button"
+            class="btn btn-dark rounded-pill px-3 py-1"
+            data-bs-toggle="modal"
+            data-bs-target="#addTaskModal"
+          >
+            Add Task +
+          </button>
+          <h3 class="fs-5 username">username</h3>
+          <span class="rounded-circle fs-2">
+            <ion-icon name="person-circle-outline"></ion-icon>
+          </span>
+        </div>
+      </header>
+
+      <div class="main d-flex vh-100">
+        <div class="modal fade" id="addTaskModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addModalLabel">Add Task</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <form onsubmit="return onAddTask(event)">
+                  <div class="mb-3">
+                    <label for="title" class="form-label text-start"
+                      >Title</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="title"
+                      placeholder="Enter title"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="description" class="form-label"
+                      >Description</label
+                    >
+                    <input
+                      type="tel"
+                      class="form-control"
+                      id="description"
+                      placeholder="Description"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="dueDate" class="form-label">Due Date</label>
+                    <input type="date" class="form-control" id="dueDate" />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="priority" class="form-label">Priority</label>
+                    <select class="form-select" id="priority">
+                      <option selected disabled>Choose priority</option>
+                      <option value="low">Low</option>
+                      <option value="medium">Medium</option>
+                      <option value="high">High</option>
+                    </select>
+                  </div>
+                  <div class="mb-4">
+                    <label for="status" class="form-label">Status</label>
+                    <select class="form-select" id="status">
+                      <option selected>Status</option>
+                      <option value="pending">Pending</option>
+                      <option value="completed">Completed</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-dark text-white w-100">
+                    Add
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="task-info w-100 px-5 mt-3">
+          <div
+            class="task-filter d-flex justify-content-between align-items-center"
+          >
+            <h3>Tasks</h3>
+            <div class="filters d-flex gap-3">
+              <select
+                class="form-select select-priority"
+                aria-label="Default select example"
+              >
+                <option value="all">Priority</option>
+                <option value="low">Low</option>
+                <option value="medium">Mediun</option>
+                <option value="high">High</option>
+              </select>
+              <select
+                class="form-select select-date"
+                aria-label="Default select example"
+              >
+                <option value="all">Date</option>
+                <option value="today">Today</option>
+                <option value="tomorrow">Tomorrow</option>
+              </select>
+              <select
+                class="form-select select-status"
+                aria-label="Default select example"
+              >
+                <option value="all">Status</option>
+                <option value="pending">Pending</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+          </div>
+          <div class="tasks mt-4 gap-3 row bg-grey"></div>
+        </div>
+      </div>
+    </main>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        let allTasks = [];
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+          alert("You are not logged in.");
+          window.location.href = "login.html";
+          return;
+        }
+
+        $.ajax({
+          url: "http://localhost:8000/user/user",
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          success: function (response) {
+            const { user, tasks } = response;
+            console.log("response--------", response);
+
+            $(".username").text(user.name);
+            $("#user-email").text(user.email);
+            $(".role").text(user.role);
+
+            allTasks = tasks;
+            renderTasks(allTasks);
+
+            $(".select-priority, .select-status, .select-date").on(
+              "change",
+              function () {
+                const selectedPriority = $(".select-priority").val();
+                const selectedStatus = $(".select-status").val();
+                const selectedDate = $(".select-date").val();
+
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                const tomorrow = new Date(today);
+                tomorrow.setDate(today.getDate() + 1);
+
+                const filteredTasks = allTasks.filter((task) => {
+                  const taskDueDate = new Date(task.dueDate);
+                  taskDueDate.setHours(0, 0, 0, 0);
+
+                  const matchPriority =
+                    selectedPriority === "all" ||
+                    task.priority === selectedPriority;
+
+                  const matchStatus =
+                    selectedStatus === "all" || task.statuss === selectedStatus;
+
+                  const matchDate =
+                    selectedDate === "all" ||
+                    (selectedDate === "today" &&
+                      taskDueDate.getTime() === today.getTime()) ||
+                    (selectedDate === "tomorrow" &&
+                      taskDueDate.getTime() === tomorrow.getTime());
+
+                  return matchPriority && matchStatus && matchDate;
+                });
+
+                renderTasks(filteredTasks);
+              }
+            );
+          },
+          error: function (err) {
+            console.log("Error fetching user data:", err);
+            alert("Failed to load user data.");
+          },
+        });
+      });
+
+      function renderTasks(tasks) {
+        const taskList = $(".tasks");
+        taskList.empty(); 
+
+        tasks.forEach((task) => {
+          const due = new Date(task.dueDate);
+          const formattedDate = `${String(due.getDate()).padStart(
+            2,
+            "0"
+          )}-${String(due.getMonth() + 1).padStart(
+            2,
+            "0"
+          )}-${due.getFullYear()}`;
+
+          taskList.append(` 
+      <div class="task col-3 p-3 rounded-2" style="background-color: #f0f0f0;">
+        <div class="task-head d-flex justify-content-between">
+          <h2>${task.title}</h2>
+          <div class="prio bg-warning px-4 d-flex align-items-center rounded-2">
+            <div>${(task.priority || "").toUpperCase()}</div>
+          </div>
+        </div>
+        <p class="mt-2">${task.description}</p>
+        <div class="due-date bg-white p-1">Due Date: ${formattedDate}</div>
+
+        <div class="btn-group mt-4" role="group" aria-label="Status toggle">
+          <input type="radio" class="btn-check" name="btnradio-${
+            task._id
+          }" id="pending-${task._id}" autocomplete="off" ${
+            task.statuss === "pending" ? "checked" : ""
+          }/>
+          <label class="btn btn-outline-success mx-2 rounded-2" for="pending-${
+            task._id
+          }">Pending</label>
+
+          <input type="radio" class="btn-check" name="btnradio-${
+            task._id
+          }" id="completed-${task._id}" autocomplete="off" ${
+            task.statuss === "completed" ? "checked" : ""
+          }/>
+          <label class="btn btn-outline-success mx-2 rounded-2" for="completed-${
+            task._id
+          }">Completed</label>
+        </div>
+      </div>`);
+        });
+      }
+
+      function onAddTask(e) {
+        e.preventDefault();
+        $.ajax({
+          url: "http://localhost:8000/tasks",
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          contentType: "application/json",
+          data: JSON.stringify({
+            title: $("#title").val(),
+            description: $("#description").val(),
+            dueDate: $("#dueDate").val(),
+            priority: $("#priority").val(),
+            statuss: $("#status").val(),
+          }),
+          success: function (response) {
+            $("#addTaskModal").modal("hide");
+            location.reload(); 
+          },
+          error: function (err) {
+            console.log("Error adding new task:", err);
+            alert("Failed to add new task.");
+          },
+        });
+      }
+    </script>
+  </body>
+</html>
